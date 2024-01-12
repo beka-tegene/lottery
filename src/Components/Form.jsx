@@ -60,7 +60,7 @@ const Form = () => {
                     <div style={{ width: "100%" }}>
                         <form action="" style={{ display: 'flex', flexDirection: 'column', gap: 8, }} onSubmit={submitHandler}>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
-                                <label style={{ color: "#8758ff" }} htmlFor="fullname">Full Name</label>
+                                <label style={{ color: "#3E3232" }} htmlFor="fullname">Full Name</label>
                                 <input type="text" name="fullname" id="fullname" style={{
                                     padding: "10px 20px",
                                     borderRadius: "4px",
@@ -74,7 +74,7 @@ const Form = () => {
                                 />
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
-                                <label style={{ color: "#8758ff" }} htmlFor="age">Age</label>
+                                <label style={{ color: "#3E3232" }} htmlFor="age">Age</label>
                                 <input type="number" name="age" id="age" style={{
                                     padding: "10px 20px",
                                     borderRadius: "4px",
@@ -88,7 +88,7 @@ const Form = () => {
                                 />
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
-                                <label style={{ color: "#8758ff" }} htmlFor="status">Status</label>
+                                <label style={{ color: "#3E3232" }} htmlFor="status">Status</label>
                                 <select name="status" id="status" style={{
                                     padding: "10px 20px",
                                     borderRadius: "4px",
@@ -107,7 +107,7 @@ const Form = () => {
                                 </select>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
-                                <label style={{ color: "#8758ff" }} htmlFor="invitation">Invited By</label>
+                                <label style={{ color: "#3E3232" }} htmlFor="invitation">Invited By</label>
                                 <input type="tel" name="invitation" id="invitation" style={{
                                     padding: "10px 20px",
                                     borderRadius: "4px",
@@ -122,7 +122,7 @@ const Form = () => {
                                 />
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
-                                <label style={{ color: "#8758ff" }} htmlFor="phonenumber">Phone Number</label>
+                                <label style={{ color: "#3E3232" }} htmlFor="phonenumber">Phone Number</label>
                                 <input type="text" name="phonenumber" id="phonenumber" style={{
                                     padding: "10px 20px",
                                     borderRadius: "4px",
