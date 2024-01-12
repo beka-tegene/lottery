@@ -12,7 +12,7 @@ const Random = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/v1/lotto/allPhoneNumbers");
+        const response = await fetch("http://192.168.0.61:5000/api/v1/lotto/allPhoneNumbers");
         const data = await response.json();
 
         if (spinning && data.phoneNumbers && data.phoneNumbers.length > 0) {
@@ -45,7 +45,7 @@ const Random = () => {
       transition={{ duration: 0.5 }}
       style={{
         textAlign: "center", width: '400px',
-        borderRadius: '4px', background: "#7E6363", padding: 16,
+        borderRadius: '4px', background: "#FFFFFF", padding: 16,
       }}
     >
       <img src={logo} alt="logo" style={{ width: "100px" }} />

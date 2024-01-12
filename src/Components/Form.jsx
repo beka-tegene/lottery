@@ -11,19 +11,22 @@ const Form = () => {
         e.preventDefault();
     
         try {
-          const response = await fetch('http://localhost:5000/api/v1/lotto/users', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              fullName,
-              age,
-              phoneNumber,
-              status,
-              invitedBy,
-            }),
-          });
+          const response = await fetch(
+            "http://192.168.0.61:5000/api/v1/lotto/users",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                fullName,
+                age,
+                phoneNumber,
+                status,
+                invitedBy,
+              }),
+            }
+          );
     
           if (response.ok) {
             alert('User registered successfully!');
