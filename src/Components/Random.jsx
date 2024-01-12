@@ -62,7 +62,7 @@ const Random = () => {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: "center" }}>
-          <h2 style={{ fontSize: '24px', fontWeight: 'bold' }}>DAN Lottery</h2>
+          <h2 style={{ fontSize: '24px', fontWeight: 'bold' }}>DAN Energy Crowd Funding</h2>
           <p style={{ fontSize: '16px', color: '#A0A0A0' }}>Click the button to generate a random phone number</p>
           <button
             style={{
@@ -85,7 +85,7 @@ const Random = () => {
               'Spin Wheel'
             )}
           </button>
-          <div style={{ width: "200px", height: "6vh", maxWidth: "200px", maxHeight: "7vh", border: "1px solid #019328", display: 'flex', flexDirection: 'column', justifyContent: "center", borderRadius: '4px', overflow: "hidden" }}>
+          <div style={{ width:"fit-content", height: "6vh", maxWidth: "300px", maxHeight: "7vh", border: "1px solid #019328", display: 'flex', flexDirection: 'column', justifyContent: "center", borderRadius: '4px', overflow: "hidden",padding:"10px" }}>
             <motion.h1
               style={{
                 fontSize: '28px',

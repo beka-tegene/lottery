@@ -56,7 +56,7 @@ const Form = () => {
                 }}
             >
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: "flex-start", width: "100%" }}>
-                    <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: "center", width: "100%" }}>DAN Lottery Form</h2>
+                    <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: "center", width: "100%" }}>DAN Energy Crowd Funding Form</h2>
                     <div style={{ width: "100%" }}>
                         <form action="" style={{ display: 'flex', flexDirection: 'column', gap: 8, }} onSubmit={submitHandler}>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
