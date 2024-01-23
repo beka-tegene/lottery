@@ -12,7 +12,7 @@ const Random = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/v1/lotto/allPhoneNumbers");
+        const response = await fetch("http://192.168.0.61:5000/api/v1/lotto/allPhoneNumbers");
         const data = await response.json();
 
         console.log(data);
