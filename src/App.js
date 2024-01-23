@@ -1,14 +1,18 @@
 import { Route, Routes } from "react-router-dom";
 import Random from "./Components/Random";
 import Form from "./Components/Form";
+import Login from "./Components/auth/Login";
+import Table from "./Components/Table";
+import Winner from "./Components/Winner";
 function App() {
   return (
-    <div style={{ height: "100vh", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "linear-gradient(45deg , #503C3C 50%, #3E3232 50%)" }}>
-      <Routes>
-        <Route path="/" element={<Random />} />
-        <Route path="/register" element={<Form />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/random" element={<Random />} />
+      <Route path="/table" element={<Table />} />
+      <Route path="/winners" element={<Winner />} />
+      <Route path="/register" element={<Form />} />
+    </Routes>
   );
 }
 
