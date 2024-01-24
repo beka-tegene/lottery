@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import logo from '../../Image/logo.gif'
+import axios from 'axios';
 const Login = () => {
-    const [userName, setUserName] = useState()
+    const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const submitHandler = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/api/v1/lotto/users', {
+            axios.defaults.withCredentials = true;
+            const response = await fetch('http://localhost:5000/api/v1/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    userName,
+                    email,
                     password,
                 }),
             });
 
             if (response.ok) {
                 alert('User registered successfully!');
-                window.location.reload(true)
+                console.log(response)
+                // window.location.href = '/random'
             } else {
                 alert('Failed to register user:', response.statusText);
             }
@@ -55,8 +58,8 @@ const Login = () => {
                         <div style={{ width: "100%" }}>
                             <form action="" style={{ display: 'flex', flexDirection: 'column', gap: 8, }} onSubmit={submitHandler}>
                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
-                                    <label style={{ color: "#3E3232" }} htmlFor="userName">User Name</label>
-                                    <input type="text" name="userName" id="userName" style={{
+                                    <label style={{ color: "#3E3232" }} htmlFor="email">Email</label>
+                                    <input type="text" name="email" id="email" style={{
                                         padding: "10px 20px",
                                         borderRadius: "4px",
                                         width: "100%",
@@ -65,7 +68,7 @@ const Login = () => {
                                         color: "#272727",
                                         outline: "none"
                                     }}
-                                        onChange={(e) => setUserName(e.target.value)}
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
