@@ -10,11 +10,10 @@ const Winner = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate()
     const cardsPerPage = 12;
-
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('YOUR_BACKEND_API_ENDPOINT');
+                const response = await fetch('http://localhost:5000/api/v1/lotto/winnersinfo');
                 const result = await response.json();
                 setData(result);
             } catch (error) {
@@ -89,9 +88,9 @@ const Winner = () => {
 
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentCards = Array.from({ length: 15 }).slice(indexOfFirstCard, indexOfLastCard);
+    const currentCards = data?.slice(indexOfFirstCard, indexOfLastCard);
 
-    const totalPages = Math.ceil(15 / cardsPerPage);
+    const totalPages = Math.ceil(data?.length / cardsPerPage);
 
     const handlePageClick = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -173,12 +172,12 @@ const Winner = () => {
                                 transition={{ delay: index * 0.2, duration: 0.3 }}
                             >
                                 <p>{`No: ${indexOfFirstCard + index + 1}`}</p>
-                                <p>{`Full Name: hello`}</p>
-                                <p>{`Age: 21`}</p>
-                                <p>{`Status: hello`}</p>
-                                <p>{`Invited By: hello`}</p>
-                                <p>{`Phone Number: 0941729595`}</p>
-                                <p style={{color:"#FFFB73"}}>{`Winner Date: 09 - 02 - 2023`}</p>
+                                <p>{`Full Name: ${card.fullName}`}</p>
+                                <p>{`Age: ${card.age}`}</p>
+                                <p>{`Status: ${card.status}`}</p>
+                                <p>{`Invited By: ${card.invitedBy}`}</p>
+                                <p>{`Phone Number: ${card.phoneNumber}`}</p>
+                                <p style={{ color: "#FFFB73" }}>{`Winner Date: ${new Date(card.timestamp).toLocaleDateString("en-US")}`}</p>
                                 <motion.button
                                     style={{
                                         ...deleteButtonStyle,

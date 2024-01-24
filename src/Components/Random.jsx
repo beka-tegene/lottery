@@ -3,37 +3,64 @@ import { css } from '@emotion/react';
 import { ClipLoader } from 'react-spinners';
 import { motion } from 'framer-motion';
 import logo from '../Image/logo.gif'
+import Confetti from 'react-confetti';
 
 const Random = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [loading, setLoading] = useState(false);
-  const [spinning, setSpinning] = useState(false);
-
+  const [spinning, setSpinning] = useState(null);
+  const [data, setData] = useState([]);
+  const [reloadTimer, setReloadTimer] = useState(null);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://192.168.0.61:5000/api/v1/lotto/allPhoneNumbers");
-        const data = await response.json();
+    const fetchRandomPhoneNumber = async () => {
+      if (spinning) {
+        try {
+          const response = await fetch('http://localhost:5000/api/v1/lotto/randomPhoneNumber');
+          const data = await response.json();
+          if (data) {
+            setPhoneNumber(data);
+            console.log(phoneNumber);
+            setSpinning(false);
+            setLoading(false);
 
-        console.log(data);
-        if (spinning && data.phoneNumbers && data.phoneNumbers.length > 0) {
-          const randomIndex = Math.floor(Math.random() * data.phoneNumbers.length);
-          const newPhoneNumber = data.phoneNumbers[randomIndex];
-          setPhoneNumber(newPhoneNumber);
-          setSpinning(false);
-          setLoading(false);
+            // Set a timer to reload the page after 2 minutes
+            const timer = setTimeout(() => {
+              window.location.reload();
+            }, 15000); // 2 minutes in milliseconds
+
+            setReloadTimer(timer);
+          }
+        } catch (error) {
+          console.error('Error fetching random phone number:', error);
         }
-      } catch (error) {
-        console.error("Error fetching data:", error);
       }
     };
 
-    const timer = setTimeout(fetchData, 2000);
+    fetchRandomPhoneNumber();
 
-    return () => clearTimeout(timer);
-  }, [spinning]);
+    return () => {
+      clearTimeout(reloadTimer);
+    };
+  }, [spinning, phoneNumber, reloadTimer]);
 
+  useEffect(() => {
+    const fetchWinnersInfo = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/v1/lotto/winnersinfo');
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching winners info:', error);
+      }
+    };
 
+    fetchWinnersInfo();
+  }, []);
+  const today = new Date().toLocaleDateString("en-US");
+  const TodayWinner = data?.filter(item => {
+    const itemDate = new Date(item.timestamp).toLocaleDateString("en-US");
+    return today === itemDate;
+  });
   const generateRandomNumber = () => {
     setLoading(true);
     setSpinning(true);
@@ -41,6 +68,7 @@ const Random = () => {
 
   return (
     <div style={{ height: "100vh", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "linear-gradient(45deg , #503C3C 50%, #3E3232 50%)" }}>
+      {spinning === false && <Confetti />}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -99,8 +127,9 @@ const Random = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {spinning ? 'Spinning...' : phoneNumber}
+                {spinning ? 'Spinning...' : phoneNumber?.phoneNumber }
               </motion.h1>
+
             </div>
           </div>
         </div>
@@ -126,7 +155,7 @@ const Random = () => {
           Today's winners
         </h2>
         <ol style={{ paddingLeft: "40px", fontSize: '24px', fontWeight: 'bold' }}>
-          {Array.from({ length: 3 }).map((_, index) => (
+          {TodayWinner?.map((_, index) => (
             <motion.li
               style={{
                 fontSize: '28px',
@@ -138,7 +167,7 @@ const Random = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              0941729595
+              {_.phoneNumber}
             </motion.li>
           ))}
 
