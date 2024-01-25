@@ -4,6 +4,7 @@ import { ClipLoader } from 'react-spinners';
 import { motion } from 'framer-motion';
 import logo from '../Image/logo.gif'
 import Confetti from 'react-confetti';
+import { useNavigate } from 'react-router-dom';
 
 const Random = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -65,10 +66,27 @@ const Random = () => {
     setLoading(true);
     setSpinning(true);
   };
-
+  const navigate = useNavigate()
   return (
     <div style={{ height: "100vh", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "linear-gradient(45deg , #503C3C 50%, #3E3232 50%)" }}>
       {spinning === false && <Confetti />}
+      <button
+        style={{
+          cursor: 'pointer',
+          padding: '.5rem 1rem',
+          background: '#8758ff',
+          border: '1px solid #8758ff',
+          borderRadius: '4px',
+          fontSize: '20px',
+          fontWeight: 'bold',
+          color: '#FFFFFF',
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          // width: "100%"
+        }}
+        onClick={() => navigate('/location')}
+      >Location</button>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -127,7 +145,7 @@ const Random = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {spinning ? 'Spinning...' : phoneNumber?.phoneNumber }
+                {spinning ? 'Spinning...' : phoneNumber?.phoneNumber}
               </motion.h1>
 
             </div>
