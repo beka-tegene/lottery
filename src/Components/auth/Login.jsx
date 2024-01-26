@@ -22,13 +22,30 @@ const Login = () => {
             });
 
             if (response.ok) {
-                alert('User registered successfully!');
-                console.log(response)
-                // window.location.href = '/random'
+                const data = await response.json();
+
+                const token = data.user;
+                if (token) {
+                    const tokenString = JSON.stringify(token);
+                    window.localStorage.setItem('token', tokenString);
+
+                    if (token.role === 'superAdmin') {
+                        window.location.replace('/random');
+                    } else if (token.role === 'admin') {
+                        window.location.replace('/table');
+                    } else {
+                        console.error('Invalid user role:', token.role);
+                    }
+                } else {
+                    console.error('Token not found in the response data');
+                }
             } else {
-                alert('Failed to register user:', response.statusText);
+                const errorData = await response.json();
+                console.error('Error:', errorData.error);
+                alert('Failed to log in user:', errorData.error);
             }
         } catch (error) {
+            console.error('Error during form submission:', error);
             alert('Error during form submission:', error);
         }
     };

@@ -5,6 +5,7 @@ const Form = () => {
     const [fullName, setFullName] = useState()
     const [age, setAge] = useState()
     const [phoneNumber, setPhoneNumber] = useState()
+    const [location, setAddress] = useState()
     const [status, setStatus] = useState()
     const [invitedBy, setInvitedBy] = useState()
     const submitHandler = async (e) => {
@@ -22,6 +23,7 @@ const Form = () => {
                     phoneNumber,
                     status,
                     invitedBy,
+                    location
                 }),
             });
 
@@ -134,6 +136,21 @@ const Form = () => {
                                         outline: "none"
                                     }}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
+
+                                    />
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-start" }}>
+                                    <label style={{ color: "#3E3232" }} htmlFor="address">Address</label>
+                                    <input type="text" name="address" id="address" style={{
+                                        padding: "10px 20px",
+                                        borderRadius: "4px",
+                                        width: "100%",
+                                        background: "transparent",
+                                        border: "1px solid #272727",
+                                        color: "#272727",
+                                        outline: "none"
+                                    }}
+                                        onChange={(e) => setAddress(e.target.value)}
 
                                     />
                                 </div>

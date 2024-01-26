@@ -104,6 +104,23 @@ const Table = () => {
       exit={{ opacity: 0 }}
       style={{ padding: '16px', minHeight: "100vh", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "linear-gradient(45deg , #503C3C 50%, #3E3232 50%)" }}
     >
+      <button
+        style={{
+          cursor: 'pointer',
+          padding: '10px 20px',
+          background: '#FF6868',
+          border: '1px solid #FF6868',
+          borderRadius: '4px',
+          color: '#FFFFFF',
+          position: 'absolute',
+          top: '0',
+          right: '0',
+        }}
+        onClick={() => {
+          window.localStorage.removeItem('token')
+          navigate('/')
+        }}
+      >Logout</button>
       <motion.div style={containerStyle}>
         <motion.img src={logo} alt="logo" style={{ width: '100px', marginBottom: '16px' }} />
         <motion.h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#000', margin: '16px 0' }}>
