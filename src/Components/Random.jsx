@@ -82,7 +82,7 @@ const Random = () => {
           color: '#FFFFFF',
           position: 'absolute',
           top: '0',
-          left: '0',
+          right: '0',
           // width: "100%"
         }}
         onClick={() => navigate('/location')}
@@ -159,7 +159,7 @@ const Random = () => {
         style={{
           position: "fixed",
           top: "20px",
-          right: '20px',
+          left: '15%',
           zIndex: 2,
           // textAlign: "center",
           width: '300px',
