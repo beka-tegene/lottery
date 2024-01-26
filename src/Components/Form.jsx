@@ -5,7 +5,7 @@ const Form = () => {
     const [fullName, setFullName] = useState()
     const [age, setAge] = useState()
     const [phoneNumber, setPhoneNumber] = useState()
-    const [address, setAddress] = useState()
+    const [location, setAddress] = useState()
     const [status, setStatus] = useState()
     const [invitedBy, setInvitedBy] = useState()
     const submitHandler = async (e) => {
@@ -23,7 +23,7 @@ const Form = () => {
                     phoneNumber,
                     status,
                     invitedBy,
-                    address
+                    location
                 }),
             });
 
